@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
 
-class PostController extends Controller
+class PostsController extends Controller
 {
    
     public function index()
@@ -15,10 +15,11 @@ class PostController extends Controller
         $post = Post::all();
         return response()->json( $post );
     }
-    public function show()
+    public function show( $id )
     {
         //
-        return response()->json('Show funcionando');
+        $post = Post::find( $id );
+        return response()->json( $post );
     }
     public function store( Request $request )
     {
@@ -37,7 +38,7 @@ class PostController extends Controller
 
         return response()->json( $post );
     }
-    public function destroy( $id )
+    public function delete( $id )
     {
         //
         $post = Post::find( $id );

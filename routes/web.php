@@ -11,10 +11,16 @@
 |
 */
 
-$router->get('/', function () use ($router) {
+use App\Http\Controllers\Controller;
+
+$router->get( '/' , function () use ( $router ) {
     return $router->app->version();
 });
 
-$router::group('post', function(){
-    $router->get('show', 'PostController' );
+$router->group( [ 'prefix' => 'api/v1' ] ,function () use ( $router ){
+    $router->get(   '/posts/index',      'PostsController@index'     );
+    $router->get(   '/posts/show/{id}',  'PostsController@show'      );
+    $router->post(  '/posts/add',        'PostsController@store'     );
+    $router->put(   '/posts/view/{id}',  'PostsController@update'    );
+    $router->delete('/posts/delete/{id}','PostsController@delete'    );
 });
