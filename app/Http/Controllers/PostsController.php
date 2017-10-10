@@ -18,6 +18,7 @@ class PostController extends Controller
     public function show()
     {
         //
+        return response()->json('Show funcionando');
     }
     public function store( Request $request )
     {
