@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 
+use Illuminate\Hashing\BcryptHasher;
+use Illuminate\Support\Facades\Hash;
+use Providers\AuthServiceProvider;
+
 class User extends Model implements AuthenticatableContract, AuthorizableContract
 {
     use Authenticatable, Authorizable;
@@ -29,4 +33,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $hidden = [
         'password', 'remember_token', 'api_token'
     ];
+
+    // public function setPasswordAttribute($password)
+    // {   
+    //     $this->attributes['password'] = bcrypt($password);
+    // }
 }

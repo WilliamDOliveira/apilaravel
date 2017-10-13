@@ -25,25 +25,55 @@ use App\Http\Controllers\Controller;
 //     $router->delete('/posts/delete/{id}','PostsController@delete'    );
 // });
 
-$app->get( '/' , function () use ( $app ) {
-    return $app->version();
+
+
+
+$router->get( '/' , function () use ( $router ) {
+    return $router->app->version();
 });
 
-$app->group( [ 'prefix' => 'api/v1' ] , function ( $app ){
+$router->group( [ 'prefix' => 'api/v1' ] , function ( $router ){
     //Posts
-    $app->group( [ 'prefix' => 'posts' ] , function ( $app ){
-        $router->get(   '/index',      'PostsController@index'     );
-        $router->get(   '/show/{id}',  'PostsController@show'      );
-        $router->post(  '/store',        'PostsController@store'     );
-        $router->put(   '/update/{id}',  'PostsController@update'    );
-        $router->delete('/delete/{id}','PostsController@delete'    );
+    $router->group( [ 'prefix' => 'posts' ] , function ( $router ){
+        $router->get(   '/index',       'PostsController@index'     );
+        $router->get(   '/show/{id}',   'PostsController@show'      );
+        $router->post(  '/store',       'PostsController@store'     );
+        $router->put(   '/update/{id}', 'PostsController@update'    );
+        $router->delete('/delete/{id}', 'PostsController@delete'    );
     });
     //Users
-    $app->group( [ 'prefix' => 'users' ] , function ( $app ){
-        $router->get(   '/index',      'UsersController@index'     );
-        $router->get(   '/show/{id}',  'UsersController@show'      );
-        $router->post(  '/store',        'UsersController@store'     );
-        $router->put(   '/update/{id}',  'UsersController@update'    );
-        $router->delete('/delete/{id}','UsersController@delete'    );
+    $router->group( [ 'prefix' => 'users' ] , function ( $router ){
+        $router->get(   '/index',       'UsersController@index'     );
+        $router->get(   '/show/{id}',   'UsersController@show'      );
+        $router->post(  '/store',       'UsersController@store'     );
+        $router->put(   '/update/{id}', 'UsersController@update'    );
+        $router->delete('/delete/{id}', 'UsersController@delete'    );
     });
 });
+
+
+
+
+
+// $app->get( '/' , function () use ( $app ) {
+//     return $app->version();
+// });
+
+// $app->group( [ 'prefix' => 'api/v1' ] , function ( $app ){
+//     //Posts
+//     $app->group( [ 'prefix' => 'posts' ] , function ( $app ){
+//         $router->get(   '/index',      'PostsController@index'     );
+//         $router->get(   '/show/{id}',  'PostsController@show'      );
+//         $router->post(  '/store',        'PostsController@store'     );
+//         $router->put(   '/update/{id}',  'PostsController@update'    );
+//         $router->delete('/delete/{id}','PostsController@delete'    );
+//     });
+//     //Users
+//     $app->group( [ 'prefix' => 'users' ] , function ( $app ){
+//         $router->get(   '/index',      'UsersController@index'     );
+//         $router->get(   '/show/{id}',  'UsersController@show'      );
+//         $router->post(  '/store',        'UsersController@store'     );
+//         $router->put(   '/update/{id}',  'UsersController@update'    );
+//         $router->delete('/delete/{id}','UsersController@delete'    );
+//     });
+// });
